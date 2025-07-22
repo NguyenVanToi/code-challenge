@@ -1,0 +1,21 @@
+{
+  "name": "code-challenge-problem-2",
+  "version": "1.0.0",
+  "description": "Token exchange calculator with modern UI/UX",
+  "scripts": {
+    "dev": "npx http-server -p 3000"
+  },
+  "keywords": [
+    "token",
+    "exchange",
+    "calculator",
+    "frontend",
+    "ui",
+    "ux"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

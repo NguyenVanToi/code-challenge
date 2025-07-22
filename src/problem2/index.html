@@ -1,26 +1,100 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fancy Form</title>
-
-  <!-- You may add more stuff here -->
+  <title>Token Exchange Calculator</title>
   <link href="style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
+  <div class="container">
+    <div class="card">
+      <form id="exchange-form" class="exchange-form" onsubmit="return !1">
+        <h5 class="form-title"><i class="fas fa-exchange-alt"></i> TOKEN EXCHANGE</h5>
 
-  <!-- You may reorganise the whole HTML, as long as your form achieves the same effect. -->
-  <form onsubmit="return !1">
-    <h5>Swap</h5>
-    <label for="input-amount">Amount to send</label>
-    <input id="input-amount" />
+        <div class="input-group">
+          <label for="from-amount">Amount to send</label>
+          <div class="token-input-wrapper">
+            <div class="token-selector" id="from-token-selector">
+              <img src="https://raw.githubusercontent.com/Switcheo/token-icons/main/tokens/SWTH.svg" alt="SWTH"
+                class="token-icon" id="from-token-icon">
+              <span class="token-symbol" id="from-token-symbol">SWTH</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <input type="number" id="from-amount" placeholder="0.00" step="0.000001" min="0" required />
+          </div>
+          <div class="balance-info">
+            <span>Balance: <span id="from-balance">0.00</span></span>
+            <button type="button" class="max-btn" id="from-max-btn">MAX</button>
+          </div>
+        </div>
 
-    <label for="output-amount">Amount to receive</label>
-    <input id="output-amount" />
+        <div class="swap-button-container">
+          <button type="button" id="swap-direction-btn" class="swap-direction-btn">
+            <i class="fas fa-arrow-down"></i>
+          </button>
+        </div>
 
-    <button>CONFIRM SWAP</button>
-  </form>
+        <div class="input-group">
+          <label for="to-amount">Amount to receive</label>
+          <div class="token-input-wrapper">
+            <div class="token-selector" id="to-token-selector">
+              <img src="https://raw.githubusercontent.com/Switcheo/token-icons/main/tokens/ETH.svg" alt="ETH"
+                class="token-icon" id="to-token-icon">
+              <span class="token-symbol" id="to-token-symbol">ETH</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <input type="number" id="to-amount" placeholder="0.00" step="0.000001" min="0" readonly />
+          </div>
+          <div class="balance-info">
+            <span>Balance: <span id="to-balance">0.00</span></span>
+          </div>
+        </div>
+
+        <div class="exchange-info">
+          <div class="info-row">
+            <span>Exchange Rate:</span>
+            <span id="exchange-rate">1 SWTH = 0.000000 ETH</span>
+          </div>
+          <div class="info-row">
+            <span>Price Impact:</span>
+            <span id="price-impact" class="impact-low">0.00%</span>
+          </div>
+          <div class="info-row">
+            <span>Network Fee:</span>
+            <span id="network-fee">0.00</span>
+          </div>
+        </div>
+
+        <button type="submit" id="confirm-swap-btn" class="confirm-btn" disabled>
+          <i class="fas fa-lock"></i>
+          CONFIRM SWAP
+        </button>
+      </form>
+
+    </div>
+
+    <div id="token-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Select Token</h3>
+          <button type="button" class="close-btn" id="close-modal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="search-container">
+          <input type="text" id="token-search" placeholder="Search tokens..." />
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="token-list" id="token-list"></div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 
